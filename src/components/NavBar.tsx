@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
 import NavCategories from './NavCategories';
 import CurrentDate from './CurrentDate';
 import NavProfile from './NavProfile';
 import Marquee from './Marquee';
 import Link from 'next/link';
-import GLoading from '@/app/loading';
+
 
 const NavBar = () => {
   return (
@@ -16,9 +15,7 @@ const NavBar = () => {
             <Link href='/'><div className='bg-[#05893E] flex w-10 h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
             <div>
               <Link href='/' className='font-bold text-[22px]'>বাজার দর</Link>
-                <Suspense fallback={<GLoading />}>
                   <CurrentDate />
-              </Suspense>
             </div>
           </div>
           <NavProfile />
