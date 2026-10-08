@@ -7,27 +7,29 @@ import Link from 'next/link';
 
 const NavBar = () => {
   return (
-    <header>
-      <div className='border-b border-[#F0F5F0]'>
-      <nav className='container mx-auto max-w-5xl pt-3 pb-3'>
-        <div className='flex justify-between items-center'>
-          <div className='flex gap-2 items-center'>
-            <Link href='/'><div className='bg-[#05893E] flex w-10 h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
-            <div>
-              <Link href='/' className='font-bold text-[22px]'>বাজার দর</Link>
+    <header className='bg-white'>
+      <div className='fixed w-full top-0 bg-white'> {/*div only to fix Navbar */}
+        <div className='border-b border-[#F0F5F0]'>
+          <nav className='container mx-auto max-w-5xl pt-3 pb-3'>
+            <div className='flex justify-between items-center'>
+              <div className='flex gap-2 items-center'>
+                <Link href='/'><div className='bg-[#05893E] flex w-10 h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
+                <div>
+                  <Link href='/' className='font-bold text-[22px]'>বাজার দর</Link>
                   <CurrentDate />
+                </div>
+              </div>
+              <NavProfile />
             </div>
-          </div>
-          <NavProfile />
+          </nav>
         </div>
-      </nav>
-      </div>
 
         <div className='container mx-auto max-w-5xl'>
           <NavCategories />
         </div>
+      </div>
       
-      <div>
+      <div className='mt-[132.5px]'>
           <Marquee />
       </div>
     </header>
