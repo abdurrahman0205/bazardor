@@ -32,7 +32,7 @@ const NavBar = () => {
         </div>
       </div>
       
-      <div className='mt-[132.5px]'>
+      <div className='mt-[133.5px]'>
           <Marquee />
       </div>
     </header>

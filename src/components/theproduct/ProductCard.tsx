@@ -1,5 +1,7 @@
 import { getData } from '@/lib/getData';
 import { ProductType } from '@/lib/type';
+import Link from 'next/link';
+import { IoWarningOutline } from 'react-icons/io5';
 
 
 const ProductCard = async ({ increase, decrease, all, currentPage }: { increase?: string, decrease?: string, all?: string, currentPage?:string }) => {
@@ -25,25 +27,38 @@ const ProductCard = async ({ increase, decrease, all, currentPage }: { increase?
 
   const products = all ? data : increase ? increasedProduct : decrease ? decreasedProduct : currentPage ? categoryProduct: data ;
 
-  console.log(products);
 
   const bn = new Intl.NumberFormat("bn-BD");
 
+  //API error
+  if (data.length === 0) {
+    return <div className="flex flex-col items-center justify-center rounded-2xl border border-[#E1E8E1] bg-gray-50/60 p-8 text-center shadow-sm">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
+        <IoWarningOutline className='text-xl' />
+
+      </div>
+      <h3 className="text-base font-semibold text-gray-900">Unable to load data</h3>
+      <p className="mt-1 max-w-sm text-xs text-gray-500">
+        Something went wrong while fetching this information. Please check your connection and try again.
+      </p>
+    </div>
+  }
 
   return (
     <div className='grid grid-cols-3 gap-3'>
 
-
+    
       {
 
-        products.map((product: ProductType) => {
+        products?.map((product: ProductType) => {
+
           const { nameBn, id, image, today, unit, change: { dir, pct } } = product;
 
           const bnUnit = ["কেজি", "লিটার", "টি", "ডজন"];
 
 
-          return <div key={id} className='px-3 py-2 bg-white w-full rounded-2xl border border-[#E1E8E1] flex flex-col'>
-
+          return <div key={id} className='px-3 py-2 bg-white w-full rounded-2xl border border-[#E1E8E1] flex flex-col hover:border-[#00800096] hover:shadow-sm/20'>
+            <Link href={`/product/${id}`}>
 
             <div className='flex justify-start gap-2'>
               <div className='px-3 py-2 bg-[#E3E8E3] rounded-xl text-[18px]'>{image}</div>
@@ -68,12 +83,14 @@ const ProductCard = async ({ increase, decrease, all, currentPage }: { increase?
               <div className={`${dir === 'down' ? 'bg-[#1A9951]/15' : dir === 'up' ? 'bg-[#D03739]/15' : 'bg-[#9CA3AF]/15'} rounded-2xl py-1 px-2 text-[14px] flex justify-center items-center`}><span className={`${dir === 'down' ? 'text-[#1A9951]' : dir === 'up' ? 'text-[#D03739]' : 'text-black px-2'}`}>
                 {dir === 'up' ?
                   `▲` : dir === 'down' ? `▼` : '-'} {bn.format(pct)}%</span></div>
-            </div>
+              </div>
+            </Link>
           </div>
         })
       }
-
+    
     </div>
+
   );
 };
 

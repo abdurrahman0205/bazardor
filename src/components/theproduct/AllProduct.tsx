@@ -8,7 +8,7 @@ const AllProduct = async () => {
   const totalProduct = bn.format(products.length)
 
   return (
-    <div>
+    <div className='mt-11'>
       <h2 className='text-[20px] font-bold'>সব পণ্য</h2>
       <p className='text-[#5C655E] text-[15px]'>মোট {totalProduct}টি পণ্য দেখানো হচ্ছে</p>
       <div className='mt-5'>
