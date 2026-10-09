@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductCard from './theproduct/ProductCard';
 
 const PriceIncrease = () => {
   return (
@@ -8,6 +9,7 @@ const PriceIncrease = () => {
           <span className='text-[#D03739]'>▲</span>
           <h2 className='text-[20px] font-bold'>আজ দাম বেড়েছে</h2>
         </div>
+        <ProductCard increase='increase' />
         <div>
 
         </div>
