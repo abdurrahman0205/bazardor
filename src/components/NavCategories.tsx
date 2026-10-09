@@ -11,7 +11,7 @@ const NavCategories = async() => {
         categories.map((categorie: CategoriesType) => {
 
           return <div key={categorie.id} className='text-[15px] font-semibold'>
-            <Link href={`/${categorie.slug}`} className='flex gap-2 py-2 px-2'>
+            <Link href={`/category/${categorie.slug}`} className='flex gap-2 py-2 px-2'>
               <p>{categorie.icon}</p>
               <p>{categorie.nameBn}</p>
             </Link>

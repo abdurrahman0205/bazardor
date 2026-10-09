@@ -1,0 +1,1 @@
+export const bn = new Intl.NumberFormat("bn-BD");

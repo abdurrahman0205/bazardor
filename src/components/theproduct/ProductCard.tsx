@@ -2,22 +2,28 @@ import { getData } from '@/lib/getData';
 import { ProductType } from '@/lib/type';
 
 
-const ProductCard = async ({ increase, decrease, all }: { increase?: string, decrease?: string, all?: string }) => {
+const ProductCard = async ({ increase, decrease, all, currentPage }: { increase?: string, decrease?: string, all?: string, currentPage?:string }) => {
 
   const data = await getData('products');
 
-  //sort data
-  // if (increase) {
-
-  // }
-
-  const products = all ? data : increase ? [...(data ?? [])].filter(item => {
+  const increasedProduct = [...(data ?? [])].filter(item => {
     const { change: { dir } } = item
     return dir === 'up';
-  }).sort((a, b) => b?.change?.pct - a?.change?.pct).slice(0, 6) : decrease ? [...(data ?? [])].filter(item => {
+  }).sort((a, b) => b?.change?.pct - a?.change?.pct).slice(0, 6)
+
+  const decreasedProduct = [...(data ?? [])].filter(item => {
     const { change: { dir } } = item;
     return dir === 'down';
-  }).sort((a,b)=> a?.change?.pct - b?.change?.pct).slice(0, 6) : data;
+  }).sort((a, b) => a?.change?.pct - b?.change?.pct).slice(0, 6);
+
+  const categoryProduct = [...(data ?? [])].filter(item => {
+    const { category } = item;
+    return currentPage === category;
+  })
+
+ 
+
+  const products = all ? data : increase ? increasedProduct : decrease ? decreasedProduct : currentPage ? categoryProduct: data ;
 
   console.log(products);
 
