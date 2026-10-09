@@ -3,12 +3,13 @@ import CurrentDate from './CurrentDate';
 import NavProfile from './NavProfile';
 import Marquee from './Marquee';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 
 const NavBar = () => {
   return (
     <header className='bg-white'>
-      <div className='fixed w-full top-0 bg-white'> {/*div only to fix Navbar */}
+      <div className='fixed w-full top-0 bg-white z-50 border-b border-[#E1E8E1]'> {/*div only to fix Navbar */}
         <div className='border-b border-[#F0F5F0]'>
           <nav className='container mx-auto max-w-5xl pt-3 pb-3'>
             <div className='flex justify-between items-center'>
@@ -16,7 +17,9 @@ const NavBar = () => {
                 <Link href='/'><div className='bg-[#05893E] flex w-10 h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
                 <div>
                   <Link href='/' className='font-bold text-[22px]'>বাজার দর</Link>
-                  <CurrentDate />
+                  <Suspense fallback={<h1>Loading time...</h1>}>
+                    <CurrentDate />
+                  </Suspense>
                 </div>
               </div>
               <NavProfile />
