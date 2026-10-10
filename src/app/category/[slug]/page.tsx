@@ -1,3 +1,4 @@
+import SortBy from '@/components/SortBy';
 import ProductCard from '@/components/theproduct/ProductCard';
 import { bn } from '@/lib/exportNeed';
 import { getData } from '@/lib/getData';
@@ -9,8 +10,11 @@ import { IoWarningOutline } from 'react-icons/io5';
 const CategorieDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   const { slug } = await params
-  const data = await getData('categories')
-  const category = data.find((item: CategoriesType) => {
+  const categoriesData = await getData('categories')
+  const products = await getData('products')
+  
+
+  const category = categoriesData.find((item: CategoriesType) => {
     return slug === item.slug
 
   })
@@ -58,11 +62,11 @@ const CategorieDetailsPage = async ({ params }: { params: Promise<{ slug: string
 
         <div className='flex justify-between items-center bg-white rounded-2xl px-3 py-5'>
           <p className='text-[14px] text-[#727974]'>{`মোট ${count}টি পণ্য দেখানো হচ্ছে`}</p>
-          <div>Sort By</div>
+          <SortBy />
         </div>
 
         <div>
-          <ProductCard currentPage={currentPage} />
+          <ProductCard products={products} currentPage={currentPage} />
         </div>
       </div>
     </div>

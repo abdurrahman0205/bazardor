@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductCard from './theproduct/ProductCard';
+import { ProductInfoType } from '@/lib/type';
 
-const PriceDecrease = () => {
+const PriceDecrease = ({ products }: { products:ProductInfoType[] }) => {
 
   return (
     <div className='mt-10'>
@@ -10,7 +11,7 @@ const PriceDecrease = () => {
           <span className='text-[#1A9951]'>▼</span>
           <h2 className='text-[20px] font-bold'>আজ দাম কমেছে</h2>
         </div>
-        <ProductCard decrease='decrease'/>
+        <ProductCard products={products} decrease='decrease'/>
         <div>
           
         </div>

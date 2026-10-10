@@ -1,7 +1,7 @@
 'use client'
 import { signUp } from '@/lib/auth-client';
-
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { SubmitEvent } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
@@ -16,8 +16,10 @@ const SignUpPage = () => {
     const newUser = Object.fromEntries(formData.entries()) as {name:string, email: string, password: string} 
 
     const { data, error } = await signUp.email({
-      ...newUser,
-      callbackURL:'/'
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.password,
+      callbackURL:'/',
     })
     
     if (error?.message) {
@@ -25,6 +27,7 @@ const SignUpPage = () => {
     }
     if (data?.user) {
       toast.success('Successfully created account')
+      redirect('/')
     }
  
 
@@ -55,8 +58,8 @@ const SignUpPage = () => {
 
             />
 
-            {/* <label className="label text-black mt-3 md:w-full">পাসওয়ার্ড নিশ্চিত করুন</label>
-            <input type="password" name='confirmPassword' className="input w-full" placeholder="আবার লিখুন" /> */}
+            <label className="label text-black mt-3 md:w-full">পাসওয়ার্ড নিশ্চিত করুন</label>
+            <input type="password" className="input w-full" placeholder="আবার লিখুন" />
 
             <button className='bg-[#05893E] text-white font-semibold py-2 px-5 rounded-md shadow-md shadow-[#05893E]/50 mt-5 cursor-pointer'>অ্যাকাউন্ট তৈরি করুন</button>
 

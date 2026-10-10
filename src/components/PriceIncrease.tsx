@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductCard from './theproduct/ProductCard';
+import { ProductInfoType } from '@/lib/type';
 
-const PriceIncrease = () => {
+const PriceIncrease = ({ products }: { products:ProductInfoType[] }) => {
   return (
     <section className='mt-10'>
       <div className='container mx-auto max-w-5xl'>
@@ -9,7 +10,7 @@ const PriceIncrease = () => {
           <span className='text-[#D03739]'>▲</span>
           <h2 className='text-[20px] font-bold'>আজ দাম বেড়েছে</h2>
         </div>
-        <ProductCard increase='increase' />
+        <ProductCard increase='increase' products={products} />
         <div>
 
         </div>

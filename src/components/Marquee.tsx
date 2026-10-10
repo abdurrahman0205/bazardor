@@ -1,5 +1,5 @@
 import { getData } from '@/lib/getData';
-import { ProductType } from '@/lib/type';
+import { ProductInfoType } from '@/lib/type';
 import Link from 'next/link';
 import React from 'react';
 import { IoWarningOutline } from 'react-icons/io5';
@@ -30,7 +30,7 @@ const Marquee = async () => {
 
       <MarqueeText direction='right' className=''>
 
-        {products?.map((product: ProductType) => {
+        {products?.map((product: ProductInfoType) => {
 
           const { nameBn, image, id, change: { pct, dir }, today, unit } = product;
 
