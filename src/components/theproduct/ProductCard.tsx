@@ -31,7 +31,8 @@ const ProductCard = async ({ increase, decrease, all, currentPage }: { increase?
   const bn = new Intl.NumberFormat("bn-BD");
 
   //API error
-  if (data.length === 0) {
+  //issue in vercel deploy. Still showing error ui, after api error solved in vercel. But okay in local dev.
+  if (data.length === undefined) {
     return <div className="flex flex-col items-center justify-center rounded-2xl border border-[#E1E8E1] bg-gray-50/60 p-8 text-center shadow-sm">
       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
         <IoWarningOutline className='text-xl' />
