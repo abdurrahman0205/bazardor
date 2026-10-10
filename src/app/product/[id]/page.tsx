@@ -42,13 +42,24 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
   }
 
   const { nameBn, markets, category, categoryIcon, categoryNameBn, image, today, unit, change: { dir, pct }, yesterday } = products;
-  
+
   const bnUnit = ["কেজি", "লিটার", "টি", "ডজন"];
   const unitBn = <>{`${unit === 'kg' ? `${bnUnit[0]}`
     : unit === 'litre' ? `${bnUnit[1]}`
       : unit === 'piece' ? `${bnUnit[2]}`
         : unit === 'dozen' ? `${bnUnit[3]}`
           : `${unit}`}`}</>
+
+  const sortByMin = [...markets.sort((a: Market, b: Market) => a?.min - b?.min)]
+  const sortByMax = [...markets.sort((a: Market, b: Market) => b?.max - a?.max)]
+
+
+  const { max: maxPrice } = sortByMax[0]
+  const { min: minPrice } = sortByMin[0]
+  const average = (maxPrice + minPrice) / 2;
+
+
+
 
   return (
     <div>
@@ -70,7 +81,7 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
             <div className='w-full'>
               <h1 className='text-3xl font-bold'>{nameBn}</h1>
               <p className='text-[13px] mt-1 text-black/70'>প্রতি {unitBn} · {categoryNameBn}</p>
-              <p className='mt-2 text-[14px]'>গতকালের তুলনায় আজ দাম <strong>{today > yesterday ? `বেড়েছে` : today < yesterday ? 'কমেছে' : 'অপরিবর্তিত'}</strong>{yesterday === today? <></>:<> · {Math.abs(yesterday - today)} টাকা</>}</p>
+              <p className='mt-2 text-[14px]'>গতকালের তুলনায় আজ দাম <strong>{today > yesterday ? `বেড়েছে` : today < yesterday ? 'কমেছে' : 'অপরিবর্তিত'}</strong>{yesterday === today ? <></> : <> · {Math.abs(yesterday - today)} টাকা</>}</p>
             </div>
           </div>
 
@@ -99,19 +110,19 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
             <div className='grid grid-cols-3 gap-4'>
               <div className='border border-[#E1E8E1] rounded-2xl px-7 py-5 text-[13px]'>
                 <p>সর্বনিম্ন দাম</p>
-                <p className='text-[#1A9951]'><span className='text-3xl font-bold'>৫৯</span> টাকা</p>
+                <p className='text-[#1A9951]'><span className='text-3xl font-bold'>{bn.format(minPrice)}</span> টাকা</p>
                 <p>সবচেয়ে কম দামের বাজার</p>
               </div>
 
               <div className='border border-[#E1E8E1] rounded-2xl px-7 py-5 text-[13px]'>
                 <p>সর্বাধিক দাম</p>
-                <p className='text-[#D03739]'><span className='text-3xl font-bold'>৭৩</span> টাকা</p>
+                <p className='text-[#D03739]'><span className='text-3xl font-bold'>{bn.format(maxPrice)}</span> টাকা</p>
                 <p>সবচেয়ে বেশি দামের বাজার</p>
               </div>
 
               <div className='border border-[#E1E8E1] rounded-2xl px-7 py-5 text-[13px]'>
                 <p>গড় দাম</p>
-                <p className='text-[#1A9951]'><span className='text-3xl font-bold'>৬৬</span> টাকা</p>
+                <p className='text-[#1A9951]'><span className='text-3xl font-bold'>{bn.format(average)}</span> টাকা</p>
                 <p>প্রতি {unitBn}-এর হিসাবে</p>
               </div>
 
@@ -133,25 +144,25 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
                 </tr>
               </thead>
               <tbody className=''>
-              {
-                markets?.map((market: Market, index: number) => {
+                {
+                  markets.map((market: Market, index: number) => {
 
-                  const { market: marketName, division, min, max } = market
+                    const { market: marketName, division, min, max } = market
 
-                  return (
+                    return (
 
-                    <tr key={index} className={`text-[14px] ${index % 2 !== 0 ? 'bg-[#F0F5F0]' : ''}`}>
-                      <td className={`py-2 pl-7 text-left font-semibold border-t border-black ${index===0&&'border-t-0'}`}>{marketName}</td>
-                      <td className={`text-left border-t border-black ${index===0&&'border-t-0'}`}>{division}</td>
-                      <td className={`text-right border-t border-black ${index===0&&'border-t-0'}`}>{`${bn.format(min)} টাকা`}</td>
-                      <td className={`text-right border-t border-black ${index===0&&'border-t-0'}`}>{`${bn.format(max)} টাকা`}</td>
-                      <td className={`pr-8 text-right font-semibold border-t border-black ${index===0&&'border-t-0'}`}>{`${bn.format((max+min)/2)} টাকা`}</td>
-                    </tr>
+                      <tr key={index} className={`text-[14px] ${index % 2 !== 0 ? 'bg-[#F0F5F0]' : ''}`}>
+                        <td className={`py-2 pl-7 text-left font-semibold border-t border-black ${index === 0 && 'border-t-0'}`}>{marketName}</td>
+                        <td className={`text-left border-t border-black ${index === 0 && 'border-t-0'}`}>{division}</td>
+                        <td className={`text-right border-t border-black ${index === 0 && 'border-t-0'}`}>{`${bn.format(min)} টাকা`}</td>
+                        <td className={`text-right border-t border-black ${index === 0 && 'border-t-0'}`}>{`${bn.format(max)} টাকা`}</td>
+                        <td className={`pr-8 text-right font-semibold border-t border-black ${index === 0 && 'border-t-0'}`}>{`${bn.format((max + min) / 2)} টাকা`}</td>
+                      </tr>
 
-                 )
-                })
-              }
-            </tbody>
+                    )
+                  })
+                }
+              </tbody>
             </table>
           </div>
         </div>

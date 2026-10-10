@@ -22,18 +22,22 @@ const SignInPage = () => {
         password: checkUser.password,
         callbackURL:'/'
       })
+    
+
       
-    console.log('sign in after', data, error);
-    if (data?.user) {
-        toast.success(`successfully signed in`)
-      }
-      if (error?.message) {
-        toast.error(`${error?.message}`)
-      }
-      
-   
+  }
   
-    }
+  const handleGoogleSignIn = async() => {
+    const data = await signIn.social({
+      provider: "google",
+    }, )
+  }
+
+  const handleGitHubSignIn = async() => {
+    const data = await signIn.social({
+      provider: "github",
+    }, )
+  }
 
   return (
     <div className='container max-w-5xl mx-auto min-h-screen justify-center flex'>
@@ -63,12 +67,16 @@ const SignInPage = () => {
           <div className="divider">অথবা</div>
 
           <div className='flex flex-col md:flex-row gap-1 font-bold'>
-            <button className='btn '>
+              <button
+                onClick={handleGoogleSignIn}
+                className='btn '>
               <FcGoogle /> Google দিয়ে চালিয়ে যান</button>
-            <button className='btn'>
+              <button
+                onClick={handleGitHubSignIn}
+              className='btn'>
               <FaGithub /> GitHub দিয়ে চালিয়ে যান</button>
           </div>
-          <span className='mt-3 text-center'>অ্যাকাউন্ট নেই? <Link href='/sign-in' className='text-[#299A5A]'>সাইন আপ করুন</Link></span>
+          <span className='mt-3 text-center'>অ্যাকাউন্ট নেই? <Link href='/sign-up' className='text-[#299A5A]'>সাইন আপ করুন</Link></span>
         </fieldset>
         </form>
         <div className='text-center mt-10'>

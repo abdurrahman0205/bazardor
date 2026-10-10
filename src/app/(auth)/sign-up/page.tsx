@@ -1,5 +1,5 @@
 'use client'
-import { signUp } from '@/lib/auth-client';
+import { signIn, signUp } from '@/lib/auth-client';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { SubmitEvent } from 'react';
@@ -22,16 +22,26 @@ const SignUpPage = () => {
       callbackURL:'/',
     })
     
-    if (error?.message) {
-      toast.error("User already exists. Use another email.")
-    }
     if (data?.user) {
-      toast.success('Successfully created account')
+      toast.success('Successfully created account.')
       redirect('/')
     }
  
 
   }
+
+  //Social Sign In
+  const handleGoogleSignIn = async() => {
+      const data = await signIn.social({
+        provider: "google",
+      }, )
+    }
+  
+    const handleGitHubSignIn = async() => {
+      const data = await signIn.social({
+        provider: "github",
+      }, )
+    }
 
 
   return (
@@ -66,9 +76,13 @@ const SignUpPage = () => {
             <div className="divider">অথবা</div>
 
             <div className='flex flex-col md:flex-row gap-1 font-bold'>
-              <button className='btn '>
+              <button
+                onClick={handleGoogleSignIn}
+                className='btn '>
                 <FcGoogle /> Google দিয়ে চালিয়ে যান</button>
-              <button className='btn'>
+              <button
+                onClick={handleGitHubSignIn}
+                className='btn'>
                 <FaGithub /> GitHub দিয়ে চালিয়ে যান</button>
             </div>
             <span className='mt-3 text-center'>অ্যাকাউন্ট আছে? <Link href='/sign-in' className='text-[#299A5A]'>সাইন ইন করুন</Link></span>

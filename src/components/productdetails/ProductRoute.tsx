@@ -5,7 +5,7 @@ import React from 'react';
 const ProductRoute = () => {
   const path = usePathname()
   return (
-    <div>
+    <div className='bg-white px-5 py-2 rounded-xl mt-5'>
       {`Product Path: ${path}`}
     </div>
   );
