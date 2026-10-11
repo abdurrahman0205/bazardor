@@ -2,13 +2,13 @@
 import React, { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
 export interface BazarDorContextType {
-  sortBy: string  
-  setSortBy: Dispatch<SetStateAction<string>>
+  sortBy: 'default' | 'HighToLow' | 'LowToHigh',
+  setSortBy: Dispatch<SetStateAction<'default' | 'HighToLow' | 'LowToHigh'>>
 }
 
 export const BazarDorContext = createContext<BazarDorContextType>(
   {   
-    sortBy: 'duration',
+    sortBy: 'default',
     setSortBy: () => { },
   }
 );
@@ -16,7 +16,7 @@ export const BazarDorContext = createContext<BazarDorContextType>(
 const BazarDorProvider = ({ children }: { children: ReactNode }) => {
 
 
-  const [sortBy, setSortBy] = useState<string>('');
+  const [sortBy, setSortBy] = useState<'default' | 'HighToLow' | 'LowToHigh'>('default');
 
 
   const sharedData = {

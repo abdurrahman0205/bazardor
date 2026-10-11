@@ -1,8 +1,9 @@
 'use client'
+import { BazarDorContext } from '@/lib/context/BazarDorContext';
 // import { getData } from '@/lib/getData';
 import { ProductInfoType } from '@/lib/type';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { IoWarningOutline } from 'react-icons/io5';
 
 interface ProductCardProps { products?: ProductInfoType[], increase?: string, decrease?: string, all?: string, currentPage?: string }
@@ -10,6 +11,7 @@ interface ProductCardProps { products?: ProductInfoType[], increase?: string, de
 
 const ProductCard = ({ products, increase, decrease, all, currentPage }: ProductCardProps ) => {
 
+  const {sortBy} = useContext(BazarDorContext)
   const [data, setData ] = useState<ProductInfoType[]>(products??[])
   // const data = await getData('products');
   // const data = products;
@@ -26,34 +28,33 @@ const ProductCard = ({ products, increase, decrease, all, currentPage }: Product
   }).sort((a, b) => b?.change?.pct - a?.change?.pct).slice(0, 6)
 
 
+
   const categoryProduct = data.filter(item => {
     const { category } = item;
     return currentPage === category;
   })
 
+  const sortedCategoryProduct = categoryProduct.sort((a, b) => {
+    if (sortBy === 'LowToHigh') {
+      return a?.today - b?.today;
+    }
+    if (sortBy === 'HighToLow') {
+      return b?.today - a?.today
+    }
+    return 0
+  })
 
 
-  const productsMap = all ? data : increase ? increasedProduct : decrease ? decreasedProduct : currentPage ? categoryProduct : data;
+
+  const productsMap = all ? data : increase ? increasedProduct : decrease ? decreasedProduct : currentPage ? sortedCategoryProduct : data;
 
 
   const bn = new Intl.NumberFormat("bn-BD");
 
   //API error
-  //issue in vercel deploy. Still showing error ui, after api error solved in vercel. But okay in local dev.
 
-  // if (products.length === 0) {
-  //   return <div className="flex flex-col items-center justify-center rounded-2xl border border-[#E1E8E1] bg-gray-50/60 p-8 text-center shadow-sm">
-  //     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600">
-  //       <IoWarningOutline className='text-xl' />
 
-  //     </div>
-  //     <h3 className="text-base font-semibold text-gray-900">Unable to load data</h3>
-  //     <p className="mt-1 max-w-sm text-xs text-gray-500">
-  //       Something went wrong while fetching this information. Please check your connection and try again.
-  //     </p>
-  //   </div>
-  // }
-
+  
   return (
     <div className='grid grid-cols-3 gap-3'>
 
