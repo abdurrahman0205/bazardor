@@ -32,12 +32,12 @@ const NavProfile = () => {
             <MdOutlineArrowDropDown />
 
           </div>
-          <ul className='dropdown-content bg-white py-1 px-3 border border-black w-60 rounded-2xl mt-2' tabIndex={-1}>
+          <ul className='dropdown-content bg-white py-1 px-3 border border-black/30 w-60 rounded-2xl mt-2 justify-self-end' tabIndex={-1}>
             <li className='menu-title'>
-              <span className='block truncate text-[20px] font-semibold'>{session?.user?.name}</span>
-              <span className='block truncate text-xs opacity-70'>{session?.user?.email}</span>
+              <span className='block truncate text-[17px] font-semibold'>{session?.user?.name}</span>
+              <span className='block truncate text-xs opacity-80'>{session?.user?.email}</span>
             </li>
-            <li className='mt-3'><Link href='#' className='block text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'>👤 আমার প্রোফাইল</Link></li>
+            <li className='mt-3'><Link href='/profile' className='block text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'>👤 আমার প্রোফাইল</Link></li>
             <li><button onClick={handleSignOut} className=' text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'><span className='text-red-600 '>↩︎</span> সাইন আউট</button></li>
             
         </ul>

@@ -1,7 +1,7 @@
 'use client'
 import { signIn } from '@/lib/auth-client';
 import Link from 'next/link';
-import React, { SubmitEvent } from 'react';
+import React, { SubmitEvent, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
@@ -51,7 +51,8 @@ const SignInPage = () => {
 
 
           <label className="label text-black mt-3">ইমেইল</label>
-          <input type="email" name='email' className="input w-full" placeholder="you@example.com" />
+            <input type="email" name='email'
+              className="input w-full" placeholder="you@example.com" />
 
           <label className="label text-black mt-3">পাসওয়ার্ড</label>
           <input

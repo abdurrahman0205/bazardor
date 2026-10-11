@@ -2,7 +2,7 @@
 import { signIn, signUp } from '@/lib/auth-client';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import React, { SubmitEvent } from 'react';
+import React, { SubmitEvent, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
@@ -11,6 +11,11 @@ const SignUpPage = () => {
 
   const onSubmit = async(e: SubmitEvent<HTMLElement>) => {
     e.preventDefault()
+
+    if (password !== confirmPassword) {
+      setValidationError(`পাসওয়ার্ড দুটি মিলছে না।`)
+      return;
+    }
 
     const formData = new FormData(e.target);
     const newUser = Object.fromEntries(formData.entries()) as {name:string, email: string, password: string} 
@@ -43,6 +48,10 @@ const SignUpPage = () => {
       }, )
     }
 
+  //Sign Up input validation
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [validationError, setValidationError ] = useState('')
 
   return (
     <div className='container max-w-5xl mx-auto min-h-screen justify-center flex'>
@@ -58,19 +67,31 @@ const SignUpPage = () => {
             <input type="text" name='name' className="input w-full" placeholder="যেমন: রহিম উদ্দিন" />
 
             <label className="label text-black mt-3">ইমেইল</label>
-            <input type="email" name='email' className="input w-full" placeholder="you@example.com" />
+            <input type="email" name='email' required className="input w-full" placeholder="you@example.com" />
 
             <label className="label text-black mt-3">পাসওয়ার্ড</label>
             <input
               name="password"
               type="password"
+              required minLength={8}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
               className="input w-full" placeholder="কমপক্ষে ৮ অক্ষর"
 
             />
 
             <label className="label text-black mt-3 md:w-full">পাসওয়ার্ড নিশ্চিত করুন</label>
-            <input type="password" className="input w-full" placeholder="আবার লিখুন" />
-
+            <input type="password"
+              required minLength={8}
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value)
+                
+              }}
+              className="input w-full" placeholder="আবার লিখুন" />
+            {validationError && <p className='text-error'>{validationError}</p>} 
             <button className='bg-[#05893E] text-white font-semibold py-2 px-5 rounded-md shadow-md shadow-[#05893E]/50 mt-5 cursor-pointer'>অ্যাকাউন্ট তৈরি করুন</button>
 
             <div className="divider">অথবা</div>
