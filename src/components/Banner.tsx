@@ -1,13 +1,13 @@
 import React from 'react';
 import BannerImage from '@/assets/bazar-hero.png'
 import Image from 'next/image';
-import CurrentDate from './CurrentDate';
+import CurrentDate from './NavBar/CurrentDate';
 
 const Banner = () => {
   return (
     <section className='mt-10'>
       <div className='container mx-auto max-w-5xl'>
-        <div className='flex flex-col lg:flex-row justify-between px-1.5 py-2 rounded-3xl bg-white'>
+        <div className='flex flex-col lg:flex-row justify-between px-2 py-10 rounded-3xl bg-white'>
           <div className='text-center md:text-left pl-3'>
             <span className='block bg-[#E1F0E7] rounded-2xl px-4 py-1 text-[#05893E]  w-fit text-center font-semibold justify-center'><CurrentDate /></span>
             <h1 className='text-3xl font-bold mt-3'>আজকের বাজারের দাম এক নজরে</h1>

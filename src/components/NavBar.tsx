@@ -1,7 +1,7 @@
 import NavCategories from './NavCategories';
-import CurrentDate from './CurrentDate';
-import NavProfile from './NavProfile';
-import Marquee from './Marquee';
+import CurrentDate from './NavBar/CurrentDate';
+import NavProfile from './profile/NavProfile';
+import Marquee from './NavBar/Marquee';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -14,7 +14,7 @@ const NavBar = () => {
           <nav className='container mx-auto max-w-5xl pt-3 pb-3'>
             <div className='flex justify-between items-center'>
               <div className='flex gap-2 items-center'>
-                <Link href='/'><div className='bg-[#05893E] flex w-9 md:w-10 h-9 md:h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
+                <Link href='/'><div className='bg-[#05893E]/90 flex w-9 md:w-10 h-9 md:h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
                 <div>
                   <Link href='/' className='font-bold text-[18px] md:text-[20px]'>বাজার দর</Link>
                   <Suspense fallback={<h1>Loading time...</h1>}>
@@ -31,9 +31,9 @@ const NavBar = () => {
           <NavCategories />
         </div>
       </div>
-      
+
       <div className='mt-32.5 lg:mt-[133.5px]'>
-          <Marquee />
+        <Marquee />
       </div>
     </header>
   );

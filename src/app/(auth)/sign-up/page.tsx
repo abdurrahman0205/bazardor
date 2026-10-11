@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import React, { SubmitEvent, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 const SignUpPage = () => {
 
@@ -25,10 +25,38 @@ const SignUpPage = () => {
       email: newUser.email,
       password: newUser.password,
       callbackURL:'/',
+    }, {
+      
+      onError: (ctx) => {
+        toast.error(ctx.error.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        })
+      },
+      onSuccess: () => {
+        toast.success('Sign in successfully.', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      }
     })
     
     if (data?.user) {
-      toast.success('Successfully created account.')
+
       redirect('/')
     }
  

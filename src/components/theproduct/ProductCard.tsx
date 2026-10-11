@@ -68,7 +68,8 @@ const ProductCard = ({ products, increase, decrease, all, currentPage }: Product
           const bnUnit = ["কেজি", "লিটার", "টি", "ডজন"];
 
 
-          return <div key={id} className='px-3 py-2 bg-white w-full rounded-2xl border border-[#E1E8E1] flex flex-col hover:border-[#00800096] hover:shadow-sm/20'>
+          return <div key={id} className='px-3 py-2 bg-white w-full rounded-2xl border border-[#E1E8E1] flex flex-col hover:border-[#00800096] hover:shadow-sm/20 
+          transition ease-in-out delay-5 duration-100 hover:scale-102 hover:-translate-y-1 '>
             <Link href={`/product/${id}`}>
 
               <div className='flex justify-start gap-2'>
