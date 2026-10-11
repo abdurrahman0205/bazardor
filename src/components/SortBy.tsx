@@ -9,10 +9,10 @@ const SortBy = () => {
 
   return (
     <div className='pr-5 flex items-center gap-2 text-[14px]'>
-      <span className='md:block hidden text-[#5F6761]'>সাজান</span>
+      <span className='block text-[#5F6761]'>সাজান</span>
       <select value={sortBy}
         onChange={(e)=> setSortBy(e.target.value as 'default'|'HighToLow'|'LowToHigh')}
-        className="select select-ghost  cursor-pointer text-[14px] border border-base-300 rounded-md ">
+        className="select select-ghost  cursor-pointer text-[14px] border border-base-300 rounded-md w-fit bg-white">
         <option disabled={true}>সাজান</option>
         <option value='default'>ডিফল্ট</option>
         <option value='LowToHigh'>দাম: কম থেকে বেশি</option>

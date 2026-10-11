@@ -50,7 +50,7 @@ const CategorieDetailsPage = async ({ params }: { params: Promise<{ slug: string
 
 
   return (
-    <div className='mt-5 container max-w-5xl mx-auto'>
+    <div className='mt-5 container max-w-5xl mx-auto px-5 lg:px-0'>
       <div className='flex flex-col gap-8'>
         <div className='flex items-center justify-start gap-2 bg-white rounded-2xl px-5 py-2'>
           <div className='text-[35px]'>{icon}</div>
@@ -60,7 +60,7 @@ const CategorieDetailsPage = async ({ params }: { params: Promise<{ slug: string
           </div>
         </div>
 
-        <div className='flex justify-between items-center bg-white rounded-2xl px-3 py-5'>
+        <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between md:items-center md:bg-white rounded-2xl px-3 py-5'>
           <p className='text-[14px] text-[#727974]'>{`মোট ${count}টি পণ্য দেখানো হচ্ছে`}</p>
           <SortBy />
         </div>

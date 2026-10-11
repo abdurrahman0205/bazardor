@@ -28,7 +28,7 @@ const Marquee = async () => {
   return (
     <div className={`border-b border-[#E1E8E1]`}>
 
-      <MarqueeText direction='right' className=''>
+      <MarqueeText direction='right' duration={40} pauseOnHover className=''>
 
         {products?.map((product: ProductInfoType) => {
 

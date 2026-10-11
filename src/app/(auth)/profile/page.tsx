@@ -46,16 +46,16 @@ const Profile = () => {
   
 
   return (
-    <div className='mt-[3%]'>
+    <div className='mt-[3%] '>
       <div className='container mx-auto max-w-5xl px-30 flex flex-col gap-8'>
         <div className=''>
           <h1 className='text-3xl font-bold'>আমার প্রোফাইল</h1>
           <p className='text-[14px] text-black/70 mt-2'>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
         </div>
-        <div className='flex justify-between items-center bg-white py-4 px-5 rounded-3xl'>
+        <div className='flex flex-col md:flex-row justify-between items-center bg-white py-4 px-5 rounded-3xl'>
           <div className='flex items-center justify-start gap-3'>
-            <figure className='overflow-hidden rounded-2xl bg-gray-400 w-20 h-20'>
-              <Image src={session?.user?.image ?? 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Profile_photo_placeholder_square.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=origina'} width={300} height={300} alt='Profile' className='w-full h-auto' />
+            <figure className='overflow-hidden rounded-2xl bg-gray-400 w-20 h-17 md:h-20'>
+              <Image src={session?.user?.image ?? 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Profile_photo_placeholder_square.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=origina'} width={300} height={300} alt='Profile' className='w-full' />
               {/*  */}
             </figure>
             <div>
@@ -63,7 +63,7 @@ const Profile = () => {
               <p className='text-[14px] text-black/80'>{session?.user?.email}</p>
             </div>
           </div>
-          <div><button onClick={handleSignOut} className=' text-[#D03739] font-semibold py-2 px-2 rounded-md w-full cursor-pointer shadow-xs shadow-[#D03739] border border-[#D03739] text-left '><span className=''>↩︎</span> সাইন আউট</button></div>
+          <div className='mt-5 lg:mt-0'><button onClick={handleSignOut} className=' text-[#D03739] font-semibold py-2 px-2 rounded-md w-full cursor-pointer shadow-xs shadow-[#D03739] border border-[#D03739] text-left '><span className=''>↩︎</span> সাইন আউট</button></div>
         </div>
         <div className='bg-white py-3 px-5 rounded-3xl'>
           <div>
@@ -71,26 +71,26 @@ const Profile = () => {
             <div className='mt-5 ml-5 mb-10 flex flex-col gap-2'>
               <form id='profileUpdate' onSubmit={handleUpdateUser}>
 
-                <fieldset className='flex flex-row flex-wrap gap-2 justify-start items-center'>
+                <fieldset className='flex flex-row flex-wrap gap-4 justify-start items-center'>
                   <div>
-                    <label className="label text-black">নাম</label>
+                    <label className="label text-black mb-1">নাম</label>
                     <input type="text" name='name'
                       disabled={!edit}
-                      className="input w-full" placeholder="যেমন: রহিম উদ্দিন" />
+                      className="input w-full" placeholder="আপনার নাম" />
                   </div>
 
                   <div>
-                    <label className="label text-black">ইমেইল</label>
+                    <label className="label text-black mb-1">ইমেইল</label>
                     <input type="email" name='email'
                       disabled={!edit}
                       className="input w-full" placeholder="you@example.com" />
                   </div>
 
                   <div>
-                    <label className="label text-black">Image</label>
+                    <label className="label text-black mb-1">প্রোফাইল ছবি</label>
                     <input type="text" name='image'
                       disabled={!edit}
-                      className="input w-full" placeholder="image link" />
+                      className="input w-full" placeholder="আপনার প্রোফাইল URL" />
                   </div>
                 </fieldset>
 

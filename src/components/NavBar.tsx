@@ -10,13 +10,13 @@ const NavBar = () => {
   return (
     <header className='bg-white'>
       <div className='fixed w-full top-0 bg-white z-50 border-b border-[#E1E8E1]'> {/*div only to fix Navbar */}
-        <div className='border-b border-[#F0F5F0]'>
+        <div className='border-b border-[#F0F5F0] px-5'>
           <nav className='container mx-auto max-w-5xl pt-3 pb-3'>
             <div className='flex justify-between items-center'>
               <div className='flex gap-2 items-center'>
-                <Link href='/'><div className='bg-[#05893E] flex w-10 h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
+                <Link href='/'><div className='bg-[#05893E] flex w-9 md:w-10 h-9 md:h-10 items-center justify-center text-xl rounded-xl'>🛒</div></Link>
                 <div>
-                  <Link href='/' className='font-bold text-[22px]'>বাজার দর</Link>
+                  <Link href='/' className='font-bold text-[18px] md:text-[20px]'>বাজার দর</Link>
                   <Suspense fallback={<h1>Loading time...</h1>}>
                     <CurrentDate />
                   </Suspense>
@@ -32,7 +32,7 @@ const NavBar = () => {
         </div>
       </div>
       
-      <div className='mt-[133.5px]'>
+      <div className='mt-32.5 lg:mt-[133.5px]'>
           <Marquee />
       </div>
     </header>

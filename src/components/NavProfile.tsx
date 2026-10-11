@@ -27,7 +27,7 @@ const NavProfile = () => {
         <div className='dropdown'>
           <div className='flex items-center justify-between gap-2 cursor-pointer' role='button' tabIndex={0}>
             <Image src={profileImageLink} width={30} height={30} className='rounded-xl ring-1 ring-green-200 w-9 h-9' alt='Profile'></Image>
-            <h1 className='text-[15px]'>{session?.user?.name}</h1>
+            <h2 className='text-[15px] hidden md:block'>{session?.user?.name}</h2>
            
             <MdOutlineArrowDropDown />
 
@@ -38,12 +38,12 @@ const NavProfile = () => {
               <span className='block truncate text-xs opacity-80'>{session?.user?.email}</span>
             </li>
             <li className='mt-3'><Link href='/profile' className='block text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'>👤 আমার প্রোফাইল</Link></li>
-            <li><button onClick={handleSignOut} className=' text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'><span className='text-red-600 '>↩︎</span> সাইন আউট</button></li>
+            <li><button onClick={handleSignOut} className=' text-black font-semibold py-2 px-2 rounded-md w-full cursor-pointer hover:bg-gray-400/30 text-left'><span className='text-red-600 '>↩︎</span>সাইন আউট</button></li>
             
         </ul>
         </div></> : <><div className='flex gap-2 items-center'>
-          <Link href='/sign-in' className='font-semibold py-2 px-5 rounded-md'>সাইন ইন</Link>
-          <Link href='sign-up' className='bg-[#05893E] text-white font-semibold py-2 px-5 rounded-md shadow-md shadow-[#05893E]/50'>সাইন আপ</Link>
+          <Link href='/sign-in' className='font-semibold py-2 px-5 rounded-md whitespace-nowrap'>সাইন ইন</Link>
+          <Link href='sign-up' className='bg-[#05893E] text-white font-semibold py-2 px-5 rounded-md shadow-md shadow-[#05893E]/50 whitespace-nowrap'>সাইন আপ</Link>
         </div></>}
 
                 

@@ -64,7 +64,7 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
   return (
     <div>
 
-      <div className='container mx-auto max-w-5xl flex flex-col gap-5'>
+      <div className='container px-5 lg:px-0 mx-auto max-w-5xl flex flex-col gap-5'>
 
 
 
@@ -74,7 +74,7 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
         </div>
 
         {/* This div is for big board */}
-        <div className='flex justify-between items-center rounded-2xl py-10 px-6 bg-white border border-[#E1E8E1]'>
+        <div className='flex flex-col gap-10 md:gap-0 md:flex-row justify-between md:items-center rounded-2xl py-10 px-6 bg-white border border-[#E1E8E1]'>
 
           <div className='flex gap-2 items-center'>
             <div className='text-5xl bg-[#F0F5F0] p-4 rounded-2xl'>{image}</div>
@@ -107,7 +107,7 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
           <div>
             <h2 className='text-[23px] font-bold mb-4'>দামের সারসংক্ষেপ</h2>
 
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid md:grid-cols-3 gap-4'>
               <div className='border border-[#E1E8E1] rounded-2xl px-7 py-5 text-[13px]'>
                 <p>সর্বনিম্ন দাম</p>
                 <p className='text-[#1A9951]'><span className='text-3xl font-bold'>{bn.format(minPrice)}</span> টাকা</p>
@@ -133,7 +133,8 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
           {/* table */}
           <div>
             <h2 className='text-[23px] font-bold my-4'>বাজারভিত্তিক আজকের দাম</h2>
-            <table className='border border-[#E1E8E1] w-full rounded-2xl border-separate border-spacing-y-0 overflow-hidden'>
+            <div className='overflow-x-auto flex-nowrap whitespace-nowrap'>
+            <table className='border border-[#E1E8E1] w-full rounded-2xl border-separate border-spacing-y-0 overflow-hidden '>
               <thead>
                 <tr className='text-[15px] text-[#757C77] font-bold'>
                   <th className='text-left py-2 pl-7 border-b border-[#E2E4E2]'>বাজার</th>
@@ -163,7 +164,8 @@ const CardDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) 
                   })
                 }
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
         </div>
 

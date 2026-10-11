@@ -40,7 +40,7 @@ const CurrentDate = () => {
 
 
   return (
-    <p className='text-sm'>
+    <p className='text-[15px] whitespace-nowrap'>
       {/* {date.toLocaleDateString("bn-BD", {
         dateStyle: "full",
         timeZone: "Asia/Dhaka"

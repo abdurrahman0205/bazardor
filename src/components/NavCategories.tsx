@@ -17,14 +17,14 @@ const NavCategories = async() => {
   }
  
   return (
-    <div className='flex gap-2 py-2'>
+    <div className='flex gap-2 py-2 flex-nowrap whitespace-nowrap overflow-x-auto'>
       {
         categories?.map((categorie: CategoriesType) => {
 
           return <div key={categorie.id} className='text-[15px] font-semibold'>
             <Link href={`/category/${categorie.slug}`} className='flex gap-2 py-2 px-2'>
-              <p>{categorie.icon}</p>
-              <p>{categorie.nameBn}</p>
+              <p className=''>{categorie.icon}</p>
+              <p className='shrink-0 flex-nowrap'>{categorie.nameBn}</p>
             </Link>
           </div>
         })

@@ -8,7 +8,7 @@ export default function Home() {
   
  
   return (
-    <div>
+    <div className="px-5 lg:px-0">
       <Banner />
       <TheProductSection />
     
